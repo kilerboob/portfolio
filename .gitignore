@@ -1,0 +1,14 @@
+﻿# deps
+node_modules/
+# build
+dist/
+# logs
+npm-debug.log*
+yarn-*.log*
+pnpm-*.log*
+# editors
+.vscode/
+.idea/
+.DS_Store
+# vite cache
+node_modules/.vite/
