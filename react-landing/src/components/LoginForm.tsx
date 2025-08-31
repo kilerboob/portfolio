@@ -1,0 +1,62 @@
+﻿import { useState } from "react";
+import { login, type Tokens } from "../api";
+
+type Props = {
+  onSuccess?: (tokens: Tokens) => void;
+};
+
+export default function LoginForm({ onSuccess }: Props) {
+  const [email, setEmail] = useState("demo@example.com");
+  const [password, setPassword] = useState("secret123");
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPending(true);
+    setError(null);
+    try {
+      const tokens = await login(email, password);
+      localStorage.setItem("access", tokens.access);
+      localStorage.setItem("refresh", tokens.refresh);
+      onSuccess?.(tokens);
+    } catch (err: any) {
+      setError(err?.message || "Login failed");
+    } finally {
+      setPending(false);
+    }
+  };
+
+  return (
+    <form className="form" onSubmit={submit}>
+      <div className="field">
+        <label className="label">Email</label>
+        <input
+          className="input"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          autoComplete="username"
+        />
+      </div>
+      <div className="field">
+        <label className="label">Password</label>
+        <input
+          className="input"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          autoComplete="current-password"
+        />
+      </div>
+
+      {error && <div className="error">{error}</div>}
+
+      <button className="btn btn-primary" type="submit" disabled={pending}>
+        {pending ? "Signing in..." : "Sign in"}
+      </button>
+    </form>
+  );
+}
