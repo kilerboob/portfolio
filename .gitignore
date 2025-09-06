@@ -1,19 +1,37 @@
-﻿# deps
+﻿# Dependencies
 node_modules/
-# build
+
+# Build output
 dist/
-# logs
+build/
+
+# Logs
 npm-debug.log*
 yarn-*.log*
 pnpm-*.log*
-# editors
+*.log
+
+# IDE / OS files
 .vscode/
 .idea/
 .DS_Store
-# vite cache
+
+# Vite cache
 node_modules/.vite/
 
-# secrets
+# Python backend
+.venv/
+__pycache__/
+*.pyc
+
+# Alembic cache
+alembic/__pycache__/
+alembic/*/__pycache__/
+
+# Docker volumes / data
+volumes/
+postgres_data/
+
+# Secrets
 **/.env
 **/.env.*
-

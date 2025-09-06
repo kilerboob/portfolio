@@ -1,17 +1,29 @@
-﻿import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+﻿import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+import ru from './locales/ru/common.json';
+import uk from './locales/uk/common.json';
+import en from './locales/en/common.json';
 
 i18n
+  .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
-      en: { translation: { welcome: "Welcome to my portfolio", description: "This is a demo React landing page" } },
-      ru: { translation: { welcome: "Добро пожаловать в моё портфолио", description: "Это демонстрационный React лендинг" } },
-      ua: { translation: { welcome: "Ласкаво просимо до мого портфоліо", description: "Це демонстраційний React лендинг" } }
+      ru: { common: ru },
+      uk: { common: uk },
+      en: { common: en },
     },
-    lng: "en",
-    fallbackLng: "en",
-    interpolation: { escapeValue: false }
+    fallbackLng: 'en',
+    ns: ['common'],
+    defaultNS: 'common',
+    interpolation: { escapeValue: false },
+    detection: {
+      order: ['localStorage', 'navigator', 'htmlTag'],
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage'],
+    },
   });
 
 export default i18n;

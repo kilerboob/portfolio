@@ -1,82 +1,23 @@
-﻿import { useEffect, useState } from "react";
+﻿import "./index.css";
 import { useTranslation } from "react-i18next";
-import "./i18n";
-import "./index.css";
-import LoginForm from "./components/LoginForm";
-
-type Theme = "light" | "dark";
-const readTheme = (): Theme => (localStorage.getItem("theme") === "dark" ? "dark" : "light");
-const applyTheme = (t: Theme) => {
-  document.documentElement.classList.toggle("dark", t === "dark");
-  localStorage.setItem("theme", t);
-};
 
 export default function App() {
-  const [theme, setTheme] = useState<Theme>(readTheme);
-  const [showLogin, setShowLogin] = useState(false);
-  const [loginInfo, setLoginInfo] = useState<string | null>(null);
-  const { t, i18n } = useTranslation();
-
-  useEffect(() => { applyTheme(theme); }, [theme]);
-
+  const { t } = useTranslation();
   return (
-    <div className="page">
-      <header className="header">
-        <div className="container header-row">
-          <div className="brand">React Landing</div>
-          <div className="controls">
-            <button className="btn" onClick={() => setShowLogin((v) => !v)}>
-              {showLogin ? "Close" : "Login"}
-            </button>
-            <select
-              className="select"
-              defaultValue={i18n.language}
-              onChange={(e) => i18n.changeLanguage(e.target.value)}
-            >
-              <option value="en">EN</option>
-              <option value="ru">RU</option>
-              <option value="ua">UA</option>
-            </select>
-            <button
-              className="btn"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              title="Toggle theme"
-            >
-              {theme === "dark" ? "Light" : "Dark"}
-            </button>
-          </div>
+    <div>
+      <div className="py-16">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 gradient-text">{t("app_name")}</h1>
+  <p className="text-muted mb-8">{t("hero_tagline")}</p>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a href="/services" className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-violet text-white font-medium shadow-xl shadow-black/30 transition-transform hover:scale-[1.02]">
+            {t("services")}
+          </a>
+          <a href="/contact" className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-card/50 hover:bg-card border border-white/10">
+            {t("contact")}
+          </a>
         </div>
-      </header>
-
-      <main className="main">
-        <section className="hero">
-          <div className="container" style={{ textAlign: "center" }}>
-            <h1>{t("welcome")}</h1>
-            <p className="lead">{t("description")}</p>
-
-            {showLogin ? (
-              <div className="auth">
-                <LoginForm
-                  onSuccess={(tokens) => {
-                    const tail = tokens.access.slice(0, 16) + "";
-                    setLoginInfo("Access token saved (preview): " + tail);
-                  }}
-                />
-                {loginInfo && <div className="hint">{loginInfo}</div>}
-              </div>
-            ) : (
-              <div className="cta">
-                <a className="btn btn-primary" href="https://github.com/kilerboob/portfolio" target="_blank">View on GitHub</a>
-                <button className="btn" onClick={() => alert("Contact action")}>Contact</button>
-              </div>
-            )}
-          </div>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <div className="container"> {new Date().getFullYear()} Portfolio</div>
-      </footer>
+      </div>
     </div>
   );
 }
+

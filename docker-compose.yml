@@ -1,0 +1,61 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: pg-portfolio
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-portfolio_db}
+  # ports:
+  #   - "5432:5432"              # не публикуем порт на хост, чтобы избежать конфликтов
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB} || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+
+  backend:
+    build:
+      context: ./fastapi-auth-api
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      TG_BOT_TOKEN: ${TG_BOT_TOKEN}
+      TG_CHAT_ID: ${TG_CHAT_ID}
+      CORS_ORIGINS: ${CORS_ORIGINS}
+    depends_on:
+      db:
+        condition: service_healthy
+    command: >
+      sh -c "alembic upgrade head && python -m app.scripts.seed && uvicorn main:app --host 0.0.0.0 --port 8000"
+    ports:
+      - "18000:8000"             # backend доступен на хосте по 127.0.0.1:18000
+    volumes:
+      - ./fastapi-auth-api:/app  # dev hot-reload; в проде можно убрать
+
+  frontend:
+    build:
+      context: ./react-landing
+      dockerfile: Dockerfile
+    environment:
+      # ВАЖНО: фронт работает в браузере, ему нужен host-порт бекенда
+      VITE_API_BASE: "http://127.0.0.1:18000"
+    command: sh -c "npm ci && npm run dev -- --host 0.0.0.0"
+    depends_on:
+      - backend
+    ports:
+      - "5175:5173"
+    volumes:
+      - ./react-landing:/app
+      - /app/node_modules
+
+volumes:
+  pgdata:

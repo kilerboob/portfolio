@@ -1,4 +1,5 @@
 ﻿import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { login, type Tokens } from "../api";
 
 type Props = {
@@ -6,6 +7,7 @@ type Props = {
 };
 
 export default function LoginForm({ onSuccess }: Props) {
+  const { t } = useTranslation();
   const [email, setEmail] = useState("demo@example.com");
   const [password, setPassword] = useState("secret123");
   const [pending, setPending] = useState(false);
@@ -20,8 +22,9 @@ export default function LoginForm({ onSuccess }: Props) {
       localStorage.setItem("access", tokens.access);
       localStorage.setItem("refresh", tokens.refresh);
       onSuccess?.(tokens);
-    } catch (err: any) {
-      setError(err?.message || "Login failed");
+    } catch (err) {
+      const msg = (err as Error)?.message || t("loginFailed");
+      setError(msg);
     } finally {
       setPending(false);
     }
@@ -30,7 +33,7 @@ export default function LoginForm({ onSuccess }: Props) {
   return (
     <form className="form" onSubmit={submit}>
       <div className="field">
-        <label className="label">Email</label>
+  <label className="label">{t("email")}</label>
         <input
           className="input"
           type="email"
@@ -38,10 +41,12 @@ export default function LoginForm({ onSuccess }: Props) {
           onChange={(e) => setEmail(e.target.value)}
           required
           autoComplete="username"
+          placeholder={t("email")}
+          title={t("email")}
         />
       </div>
       <div className="field">
-        <label className="label">Password</label>
+  <label className="label">{t("password")}</label>
         <input
           className="input"
           type="password"
@@ -49,13 +54,15 @@ export default function LoginForm({ onSuccess }: Props) {
           onChange={(e) => setPassword(e.target.value)}
           required
           autoComplete="current-password"
+          placeholder={t("password")}
+          title={t("password")}
         />
       </div>
 
-      {error && <div className="error">{error}</div>}
+  {error && <div className="error">{error}</div>}
 
       <button className="btn btn-primary" type="submit" disabled={pending}>
-        {pending ? "Signing in..." : "Sign in"}
+        {pending ? t("signingIn") : t("signIn")}
       </button>
     </form>
   );

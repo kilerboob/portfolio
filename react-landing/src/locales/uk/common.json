@@ -1,0 +1,75 @@
+{
+  "app_name": "Портфоліо",
+  "hero_tagline": "Сучасні веб‑продукти: від ідеї до продакшену.",
+  "login": "Вхід",
+  "register": "Реєстрація",
+  "logout": "Вийти",
+  "language": "Мова",
+  "theme": "Тема",
+  "light": "День",
+  "dark": "Ніч",
+  "system": "Системна",
+  "services": "Послуги",
+  "contact": "Зв'язатися",
+  "telegram": "Telegram",
+  "error": "Помилка",
+  "error_loading": "Не вдалося завантажити",
+  "services_empty_note": "Поки немає публікацій. Зв'яжіться з нами — підберемо рішення для вас.",
+  "contact_action": "Зв'язатися",
+  "open_telegram": "Відкрити Telegram",
+  "site": "Сайт",
+  "lead_subject": "Заявка",
+  "lead_interest": "Інтерес до послуги",
+  "lead_sent": "Заявку надіслано в Telegram",
+  "lead_failed": "Не вдалося надіслати заявку",
+  "leave_request": "Залишити заявку",
+  "delivery_term": "Термін",
+  "days_short": "дн",
+  "fill_all_fields": "Заповніть усі поля",
+  "sending": "Відправлення…",
+  "message_sent": "Повідомлення надіслано ✅",
+  "your_name": "Ваше ім'я",
+  "subject": "Тема",
+  "message": "Повідомлення",
+  "send": "Надіслати",
+  "back_to_services": "Повернутися до послуг",
+  "we_will_contact_24h": "Ми зв'яжемося з вами протягом 24 годин.",
+  "leads": "Заявки",
+  "date": "Дата",
+  "name": "Ім'я",
+  "email": "Email",
+  "password": "Пароль",
+  "signIn": "Увійти",
+  "signingIn": "Вхід…",
+  "loginFailed": "Не вдалося увійти",
+  "registering": "Реєстрація…",
+  "registrationFailed": "Не вдалося зареєструватися",
+  "not_found_message": "Сторінку не знайдено.",
+  "go_home": "На головну",
+  "services_catalog": {
+    "landing-page": {
+      "title": "Лендінг",
+      "summary": "Дизайн і розробка швидкого сучасного лендінгу: адаптив, аналітика, SEO."
+    },
+    "ecommerce": {
+      "title": "Інтернет‑магазин",
+      "summary": "Каталог, кошик, оплата, оформлення замовлень та адмінка."
+    },
+    "seo-audit": {
+      "title": "SEO‑аудит",
+      "summary": "Технічний і контент‑аудит, пріоритезований чек‑лист і швидкі правки."
+    },
+    "landing-3-days": {
+      "title": "Лендінг за 3 дні",
+      "summary": "Експрес‑пакет: бриф, дизайн, розробка та запуск за 3 дні."
+    },
+    "dockerize-fastapi": {
+      "title": "Docker для FastAPI",
+      "summary": "Контейнеризація застосунку: Dockerfile, compose, конфіги для продакшену."
+    },
+    "n8n-automation": {
+      "title": "Автоматизації n8n",
+      "summary": "Налаштування сценаріїв та інтеграцій, вебхуки, економія ручної праці."
+    }
+  }
+}

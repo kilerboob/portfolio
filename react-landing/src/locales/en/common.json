@@ -1,0 +1,75 @@
+{
+  "app_name": "Portfolio",
+  "hero_tagline": "Modern web products: from idea to production.",
+  "login": "Login",
+  "register": "Sign up",
+  "logout": "Logout",
+  "language": "Language",
+  "theme": "Theme",
+  "light": "Light",
+  "dark": "Dark",
+  "system": "System",
+  "services": "Services",
+  "contact": "Contact",
+  "telegram": "Telegram",
+  "error": "Error",
+  "error_loading": "Failed to load",
+  "services_empty_note": "No services yet. Contact us — we'll tailor a solution for you.",
+  "contact_action": "Contact",
+  "open_telegram": "Open Telegram",
+  "site": "Website",
+  "lead_subject": "Lead",
+  "lead_interest": "Interest in service",
+  "lead_sent": "Lead sent to Telegram",
+  "lead_failed": "Failed to send lead",
+  "leave_request": "Leave a request",
+  "delivery_term": "Delivery",
+  "days_short": "days",
+  "fill_all_fields": "Fill in all fields",
+  "sending": "Sending…",
+  "message_sent": "Message sent ✅",
+  "your_name": "Your name",
+  "subject": "Subject",
+  "message": "Message",
+  "send": "Send",
+  "back_to_services": "Back to services",
+  "we_will_contact_24h": "We will contact you within 24 hours.",
+  "leads": "Leads",
+  "date": "Date",
+  "name": "Name",
+  "email": "Email",
+  "password": "Password",
+  "signIn": "Sign in",
+  "signingIn": "Signing in…",
+  "loginFailed": "Login failed",
+  "registering": "Registering…",
+  "registrationFailed": "Registration failed",
+  "not_found_message": "The page you are looking for does not exist.",
+  "go_home": "Go home",
+  "services_catalog": {
+    "landing-page": {
+      "title": "Landing page",
+      "summary": "Design and build a fast, modern landing: responsive, analytics, SEO-ready."
+    },
+    "ecommerce": {
+      "title": "E‑commerce",
+      "summary": "Catalog, cart, checkout and payments, with admin dashboard."
+    },
+    "seo-audit": {
+      "title": "SEO audit",
+      "summary": "Technical and content audit with a prioritized checklist and quick wins."
+    },
+    "landing-3-days": {
+      "title": "Landing in 3 days",
+      "summary": "Express package: brief, design, development and launch in 3 days."
+    },
+    "dockerize-fastapi": {
+      "title": "Dockerize FastAPI",
+      "summary": "Containerize your app: Dockerfile, compose, and production configs."
+    },
+    "n8n-automation": {
+      "title": "n8n automations",
+      "summary": "Workflows and integrations, webhooks, saving manual effort."
+    }
+  }
+}

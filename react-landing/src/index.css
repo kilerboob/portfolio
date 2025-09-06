@@ -1,13 +1,33 @@
-﻿:root { color-scheme: light dark; }
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+  /* numeric RGB for opacity-aware tailwind colors */
+  --bg: 11 15 25;        /* #0b0f19 */
+  --fg: 229 231 235;     /* #e5e7eb */
+  --muted: 148 163 184;  /* #94a3b8 */
+  --card: 17 24 39;      /* #111827 */
+  --primary: 96 165 250; /* #60a5fa */
+}
+
+.dark {
+  --bg: 11 15 25;
+  --fg: 229 231 235;
+  --muted: 148 163 184;
+  --card: 15 23 42;      /* #0f172a */
+  --primary: 139 92 246; /* #8b5cf6 */
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body, #root { height: 100%; }
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
   line-height: 1.6;
-  background: #ffffff;
-  color: #111827;
+  background: rgb(var(--bg));
+  color: rgb(var(--fg));
 }
-html.dark body { background: #0b1220; color: #e5e7eb; }
 
 /* ===== Сетка, чтобы футер был внизу ===== */
 .page { display: flex; flex-direction: column; min-height: 100vh; }
@@ -24,6 +44,7 @@ html.dark .footer { border-color: rgba(229,231,235,.08); }
 /* Хэдер */
 .header {
   position: sticky; top: 0; z-index: 10;
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
   backdrop-filter: saturate(180%) blur(10px);
   background: rgba(255,255,255,.75);
   border-bottom: 1px solid rgba(17,24,39,.08);
@@ -55,3 +76,21 @@ h1 { margin-bottom: 12px; font-size: clamp(28px, 4.5vw, 44px); line-height: 1.1;
 .btn-primary { background: #0ea5e9; color: #fff; border: none; }
 .btn-primary:hover { filter: brightness(.95); }
 html.dark .btn-primary { background: #6366f1; }
+
+/* Utility helpers */
+.gradient-text { @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-violet; }
+.glass-panel {
+  @apply bg-gradient-to-b from-[#1e293b] via-[#0f172a] to-[#1e293b] rounded-2xl shadow-xl shadow-black/30 border border-white/10;
+}
+.card-hover {
+  @apply transition-transform duration-300 ease-out hover:scale-[1.02] hover:shadow-cyan-500/30;
+}
+
+/* Forms/buttons baseline for auth/contact */
+.form { @apply space-y-4; }
+.field { @apply space-y-2; }
+.label { @apply text-sm text-muted; }
+.input { @apply w-full p-3 rounded-2xl bg-card/60 border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-500; }
+.btn { @apply inline-flex items-center justify-center px-4 py-2 rounded-lg text-sm font-medium; }
+.btn-primary { @apply bg-gradient-to-r from-brand-blue via-brand-cyan to-brand-violet text-white shadow-xl shadow-black/30; }
+.error { @apply text-red-400 text-sm; }
